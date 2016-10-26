@@ -1,0 +1,20 @@
+baseurl = "http://snippets.studybreakmedia.com.s3-website-us-east-1.amazonaws.com/gcs"
+languageCode = "en-us"
+title = "GCS callback isolation"
+
+canonifyurls = false
+disableRSS = false
+buildDrafts = false
+
+publishdir = '/Users/jon/Desktop/s3/snippets'
+
+[permalinks]
+    article = "/:year/:month/:title/"
+
+[taxonomies]
+    tag = "tags"
+
+[params]
+    author = "Jononomo"
+
+
