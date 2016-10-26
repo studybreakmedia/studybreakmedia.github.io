@@ -12,16 +12,111 @@
 		<link rel="stylesheet" href="css/style.css?v=3">
 		<link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+		<script type='text/javascript'>
+		</script>
+
+		<script type='text/javascript'>
+			window.accounts = {
+				bibme: 'cjushv7wzgwjf4csagih4qalai',
+				citationmachine: '3c24dgdnpolt43khifwxsb2vzy',
+				easybib: 'k6xcrwbwbhuvghqk5sqhrnxhay',
+				test: 'n7maaf4flzfkb2nz5d5qlqg7oq',
+				using: ''
+			}
+			window.config = {
+				gcs: {
+					run: true,
+					id: 'n7maaf4flzfkb2nz5d5qlqg7oq',
+					p402: 'hide'
+				}
+			}
+		</script>
+
+
+		<script type='text/javascript'>
+			window.perhaps_run_gcs = function() {
+				try {
+					if (config.gcs && config.gcs.run && config.gcs.id) {
+						window.gcs_unavailable = function() {
+							$('#gcs-info').text(window.accounts.using.toUpperCase()+' callback: gcs_unavailable()');
+							console.log('callback: gcs_unavailable()');
+						}
+						window.gcs_completed = function(arg1, arg2) {
+							$('#gcs-info').text(window.accounts.using.toUpperCase()+' callback: gcs_completed('+arg1+', '+arg2+')');
+							console.log('callback: gcs_completed('+arg1+', '+arg2+')');
+						}
+						let GCS_ID = config.gcs.id;
+						console.log('config.gcs.run IS true - using id: '+GCS_ID);
+						window.TriggerPrompt = function(articleUrl, contentId) {
+							console.log('window.TriggerPrompt called')
+							var ARTICLE_URL = articleUrl;
+							var CONTENT_ID = contentId || '';
+							var el = document.createElement('script');
+							var url = 'http://survey.g.doubleclick.net/survey?site=_' + GCS_ID +
+										'&url=' + encodeURIComponent(ARTICLE_URL) +
+										(CONTENT_ID ? '&cid=' + encodeURIComponent(CONTENT_ID) : '') +
+										'&random=' + (new Date).getTime() + '&after=1';
+							el.setAttribute('src', url);
+							var head = document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0];
+							head.appendChild(el);
+							console.log('successfully appended GCS with ID: '+GCS_ID);
+						};
+						let launch_gcs = function() {
+							let css_selector = '#content-for-gcs-to-cover';
+							console.log('using CSS selector: '+css_selector);
+							try {
+								$($(css_selector)[0]).addClass('p402_'+config.gcs.p402);
+								window.TriggerPrompt(window.location.href, 'everything');
+							} catch(e) {
+								console.log('attempt to run GCS had this error: '+e);
+								console.log('CSS selector: '+css_selector);
+							}
+						}
+						if (document.readyState != 'loading'){
+							launch_gcs();
+						} else {
+							document.addEventListener('DOMContentLoaded', launch_gcs);
+						}
+					}
+					else {
+						console.log('gcs.run is '+config.gcs.run+' AND gcs.id is '+config.gcs.id);
+					}
+				} catch (e) {
+					console.log(e);
+				}
+			}
+		</script>
+
+		<script type='text/javascript'>
+			window.setAccount = function(site) {
+				$('#gcs-info').text('');
+				window.accounts.using = site;
+				console.log('setting account to: '+window.accounts[site]+' for '+site);
+				window.config.gcs.id = window.accounts[site];
+				window.perhaps_run_gcs();
+			}
+		</script>
+
 	</head>
 
 	<body lang="en">
 		<div id='body-width'>
-			<div id='left-skyscraper' class='ad'>  a 160x600 ad goes here</div>
+			<div id='left-skyscraper' class='ad'>
+				a 160x600 ad goes here
+				<div id='gcs-control'>
+					<div class='click-account' onclick="setAccount('bibme')">BibMe</div>
+					<div class='click-account' onclick="setAccount('citationmachine')">CitationMachine</div>
+					<div class='click-account' onclick="setAccount('easybib')">EasyBib</div>
+					<div class='click-account' onclick="setAccount('test')">Test</div>
+				</div>
+			</div>
 			<div id='center-col'>
 				<section id='header' class='card'>
 					<a href='/'><div id='brand'>GCS callback isolation</div></a>
  					<img id='sbm-logo1' src="img/sbm-logo.png" />
 					<img id='sbm-logo2' src="img/sbm-logo.png" />
+					<div id='gcs-info'></div>
 				</section>
 				<div id='leaderboard' class='ad'>  a 728x90 ad goes here</div>
 				<section class='card'>
