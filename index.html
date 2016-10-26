@@ -96,6 +96,14 @@
 				window.config.gcs.id = window.accounts[site];
 				window.perhaps_run_gcs();
 			}
+			window.setP402 = function(hide_or_premium) {
+				window.config.gcs.p402 = hide_or_premium;
+				$('#p402').text(window.config.gcs.p402)
+				console.log
+			}
+			$(document).ready(function() {
+				window.setP402('hide');
+			})
 		</script>
 
 	</head>
@@ -115,6 +123,11 @@
 				<b>Second</b>, open your console.log. <br/><br/>
 				<b>Third</b>, click on one of the accounts above<br/><br/>
 				<b>Fourth</b>, look for the callback indication and examine the console log for info.
+				<br/>
+				<br/>
+				<div class='click-p402' onclick='setP402("hide")'>p402_hide</div>
+				<div class='click-p402' onclick='setP402("premium")'>p402_premium</div>
+				<div>Using: <span id='p402outer'>p402_<span id='p402'></span></span></div>
 			</div>
 			<div id='center-col'>
 				<section id='header' class='card'>

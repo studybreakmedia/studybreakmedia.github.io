@@ -31,20 +31,11 @@ body {
   height: 600px;
   display: inline-block;
 }
-#date-time {
-  min-height: 20px;
-  font-size: 14px;
-  position: absolute;
-  top: 4px;
-  left: 0px;
-  width: 100%;
-  text-align: center;
-}
 .ad {
   border: 1px solid black;
   background-color: #eb9800;
   margin: 4px;
-  padding: 12px;
+  padding: 4px;
 }
 #center-col {
   min-width: 740px;
@@ -110,20 +101,27 @@ body {
   outline: 2px solid black;
   background-color: #f0f000;
   margin: 8px 2px;
+  padding: 4px;
 }
 .click-account:hover {
   cursor: pointer;
   background-color: #ffff61;
   outline: 2px solid darkorange;
 }
-#page-type {
-  font-size: 26px;
-  color: red;
+.click-p402 {
+  outline: 2px solid black;
+  background-color: #ff9cae;
+  margin: 8px 2px;
   padding: 4px;
-  position: absolute;
-  width: 100%;
-  left: 0px;
-  text-align: center;
+}
+.click-p402:hover {
+  cursor: pointer;
+  background-color: #ffc5cf;
+  outline: 2px solid darkred;
+}
+#p402outer {
+  color: #a40000;
+  font-size: 14px;
 }
 .card {
   background-color: white;
