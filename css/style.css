@@ -91,34 +91,24 @@ body {
 #header #brand {
   color: black;
   position: relative;
-  top: -4px;
+  top: 8px;
 }
 #header #brand:hover {
   color: darkblue;
 }
 #header #sbm-logo1 {
-  opacity: 0.4;
+  opacity: 0.3;
   position: absolute;
   left: 18px;
-  top: 19px;
-}
-@media (max-width: 900px) {
-  #header #sbm-logo1 {
-    height: 113px;
-    width: 89px;
-  }
+  top: 8px;
+  width: 80px;
 }
 #header #sbm-logo2 {
-  opacity: 0.4;
+  opacity: 0.3;
   position: absolute;
   right: 18px;
-  top: 19px;
-}
-@media (max-width: 900px) {
-  #header #sbm-logo2 {
-    height: 113px;
-    width: 89px;
-  }
+  top: 8px;
+  width: 80px;
 }
 #page-type {
   font-size: 26px;
